@@ -1,14 +1,14 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import { Link } from 'react-router-dom';
 
-function DataList() {
+function DataList () {
   const [characters, setCharacters] = useState([]);
   const [loading, setLoading] = useState(true);
   const [episodes, setEpisodes] = useState([]);
   const [pageIndex, setPageIndex] = useState(1);
   const [episodeIndex, setEpisodeIndex] = useState(1);
-  var iconColor = "";
+  var iconColor = '';
 
   useEffect(() => {
     onLoadMoreButtonClick();
@@ -23,7 +23,7 @@ function DataList() {
     setLoading(false);
   };
 
-  async function fetchPageByIndex(pageIndex) {
+  async function fetchPageByIndex (pageIndex) {
     const response = await axios.get(
       `https://rickandmortyapi.com/api/character?page=${pageIndex}`
     );
@@ -44,61 +44,72 @@ function DataList() {
     setLoading(false);
   };
 
-  async function fetchEpisodeByIndex(pageIndex) {
+  async function fetchEpisodeByIndex (pageIndex) {
     const response = await axios.get(
       `https://rickandmortyapi.com/api/episode?page=${pageIndex}`
     );
     return await response.data.results;
   }
 
-  function getName(props) {
-    const arr = characters[props.id - 1].episode[0].split("/");
+  function getName (props) {
+    const arr = characters[props.id - 1].episode[0].split('/');
     const lastElement = arr[arr.length - 1];
     return episodes[lastElement - 1]?.name;
   }
 
+  function changeStatusColor (status) {
+    switch (status) {
+      case 'Alive':
+        return '#55cc44';
+      case 'Dead':
+        return '#d63d2e';
+      default:
+        return '#9e9e9e';
+    }
+  }
+
   return (
     <div>
-      {" "}
       <div className="container">
         <div className="row">
-          {characters.map((data) => {
+          { characters.map(data => {
             return (
-              <div key={data.id} className="col-md-4">
+              <div key={ data.id } className="col-md-4">
                 <div className="card p-3">
                   <div className="flex-row mb-3">
                     <img
-                      src={data.image}
-                      alt={data.name}
+                      src={ data.image }
+                      alt={ data.name }
                       width="100"
                       height="100"
                     />
                     <div className="d-flex flex-column ml-2">
-                      <span style={{ fontSize: "20px" }}>{data.name}</span>
+                      <span style={ { fontSize: '20px' } }>{ data.name }</span>
                       <span
-                        style={{ fontSize: "20px" }}
+                        style={ { fontSize: '20px' } }
                         className="text-black-50"
                       >
-                        {" "}
+                        &nbsp;
                         <i
                           className="fas fa-circle"
-                          style={{ color: (data.status=== "Alive") ? ("green") : ((data.status=== "Dead") ? ("red") : ("gray")) }}
-                        ></i>
-                        {data.status} - {data.species}
+                          style={ {
+                            color: changeStatusColor(data.status)  } }
+                        />
+                        { data.status } - { data.species }
                       </span>
                     </div>
                   </div>
                   <h6>Last known location:</h6>
-                  <h6 style={{ color: "black" }}>{data.location.name}</h6>
+                  <h6 style={ { color: 'black' } }>{ data.location.name }</h6>
                   <h6>First seem in:</h6>
-                  <h6 style={{ color: "black" }}>
-                    {getName({ id: data.id })}{" "}
+                  <h6 style={ { color: 'black' } }>
+                    { getName({ id: data.id }) }{ ' ' }
                   </h6>
                   <div className="btn btn-danger btn-block">
                     <Link
-                      to={{
+                      to={ {
                         pathname: `detail/${data.id}`,
-                      }}
+                      } }
                       className="btn btn-dark btn-block"
                     >
                       Load More
@@ -107,18 +118,18 @@ function DataList() {
                 </div>
               </div>
             );
-          })}
+          }) }
         </div>
       </div>
-      {loading ? (
-        "loading"
+      { loading ? (
+        'loading'
       ) : (
-        <button className="btn btn-danger" onClick={onLoadMoreButtonClick}>
+        <button className="btn btn-danger" onClick={ onLoadMoreButtonClick }>
           Load More
         </button>
-      )}
+      ) }
       <div>
-        {pageIndex}, {characters.length}
+        { pageIndex }, { characters.length }
       </div>
     </div>
   );
