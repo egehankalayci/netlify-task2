@@ -12,7 +12,7 @@ function App() {
     <Router>
       <div className="App">
         <header className="App-header">
-          <h1>The Rick and Morty API</h1>
+          <h1>The Rick and Morty</h1>
           <Navbar title="User App" />
           <hr />
           <Switch>
