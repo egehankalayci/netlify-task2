@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import Modal from 'react-modal';
+import DtModal from './components/DtModal';
 
 function EpisodePage () {
   const [episode, setEpisode] = useState([]);
@@ -12,7 +12,6 @@ function EpisodePage () {
   const [index, setIndex] = useState(0);
 
   function toggleModal () {
-    console.log(characterList);
     setIsOpen(!isOpen);
     if (!isOpen) {
       someFunc();
@@ -22,7 +21,6 @@ function EpisodePage () {
   }
 
   useEffect(() => {
-    Modal.setAppElement('#root');
     onPageLoading();
   }, []);
 
@@ -63,15 +61,15 @@ function EpisodePage () {
 
   return (
     <div>
-      <Modal
+      <DtModal
         isOpen={ isOpen }
         onRequestClose={ toggleModal }
         contentLabel="Characters in this episode"
+        title="Deneme"
       >
         <h1>Characters in This Episode</h1>
         <div className="row">
           { characterList.map(data => {
-            console.log();
             return (
               <div key={ data.id } className="col-md-4">
                 <img
@@ -89,7 +87,7 @@ function EpisodePage () {
             Close
         </button>
         <h1 style={ { color: 'black' } }>{ }</h1>
-      </Modal>
+      </DtModal>
       <table className="table table-bordered table-dark">
         <thead className="thead-light">
           <tr>

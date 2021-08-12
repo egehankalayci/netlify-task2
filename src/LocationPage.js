@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 
-function LocationPage() {
+function LocationPage () {
   const [location, setLocation] = useState([]);
   const [loading, setLoading] = useState(true);
   const [pageIndex, setPageIndex] = useState(1);
@@ -18,8 +18,7 @@ function LocationPage() {
     setLoading(false);
   };
 
-  async function fetchLocationByIndex(pageIndex) {
-    console.log(location);
+  async function fetchLocationByIndex (pageIndex) {
     if (pageIndex <= 6) {
       const response = await axios.get(
         `https://rickandmortyapi.com/api/location?page=${pageIndex}`
@@ -40,7 +39,7 @@ function LocationPage() {
 
   return (
     <div>
-      <table class="table table-bordered table-dark">
+      <table className="table table-bordered table-dark">
         <thead className="thead-light" >
           <tr>
             <th scope="col">#</th>
@@ -49,25 +48,25 @@ function LocationPage() {
             <th scope="col">Dimension</th>
           </tr>
         </thead>
-        {location.map((data) => {
+        { location.map(data => {
           return (
-              <tbody key={data.id}>
-                <tr className={data.id%2===0?"":"table-active"}>
-                  <th scope="row">{data.id}</th>
-                  <td>{data.name}</td>
-                  <td>{data.type}</td>
-                  <td>{data.dimension}</td>
-                </tr>
-              </tbody>
+            <tbody key={ data.id }>
+              <tr className={ data.id % 2 === 0 ? '' : 'table-active' }>
+                <th scope="row">{ data.id }</th>
+                <td>{ data.name }</td>
+                <td>{ data.type }</td>
+                <td>{ data.dimension }</td>
+              </tr>
+            </tbody>
           );
-        })}
-        {loading ? (
-          "loading"
+        }) }
+        { loading ? (
+          'loading'
         ) : (
-          <button className="btn btn-danger" onClick={onLoadMoreButtonClick}>
+          <button className="btn btn-danger" onClick={ onLoadMoreButtonClick }>
             Load More
           </button>
-        )}
+        ) }
       </table>
     </div>
   );

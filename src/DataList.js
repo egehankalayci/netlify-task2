@@ -8,7 +8,6 @@ function DataList () {
   const [episodes, setEpisodes] = useState([]);
   const [pageIndex, setPageIndex] = useState(1);
   const [episodeIndex, setEpisodeIndex] = useState(1);
-  var iconColor = '';
 
   useEffect(() => {
     onLoadMoreButtonClick();
@@ -51,8 +50,8 @@ function DataList () {
     return await response.data.results;
   }
 
-  function getName (props) {
-    const arr = characters[props.id - 1].episode[0].split('/');
+  function getName (data) {
+    const arr = characters[data.id - 1].episode[0].split('/');
     const lastElement = arr[arr.length - 1];
     return episodes[lastElement - 1]?.name;
   }
@@ -93,7 +92,8 @@ function DataList () {
                         <i
                           className="fas fa-circle"
                           style={ {
-                            color: changeStatusColor(data.status)  } }
+                            color: changeStatusColor(data.status),
+                          } }
                         />
                         { data.status } - { data.species }
                       </span>
