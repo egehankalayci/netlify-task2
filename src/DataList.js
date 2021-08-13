@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
-function DataList () {
+
+function DataList (props) {
   const [characters, setCharacters] = useState([]);
   const [loading, setLoading] = useState(true);
   const [episodes, setEpisodes] = useState([]);
@@ -71,7 +73,7 @@ function DataList () {
     <div>
       <div className="container">
         <div className="row">
-          { characters.map(data => {
+          { characters.filter(character=>character.name.toLowerCase().includes(props.search)).map(data => {
             return (
               <div key={ data.id } className="col-md-4">
                 <div className="card p-3">
@@ -134,5 +136,9 @@ function DataList () {
     </div>
   );
 }
+
+DataList.propTypes = {
+  search: PropTypes.string
+};
 
 export default DataList;

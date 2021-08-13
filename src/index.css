@@ -21,3 +21,47 @@ h6{
 h1 {
   font-size: 75px;
 }
+
+button {
+  background-color: transparent;
+  border: 0;
+  outline: 0;
+}
+
+
+body,html{
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  background: #e74c3c !important;
+  }
+
+  .searchbar{
+  margin-bottom: auto;
+  margin-top: auto;
+  height: 60px;
+  background-color: #353b48;
+  border-radius: 30px;
+  padding: 10px;
+  }
+
+  .search_input{
+    color: white;
+    border: 0;
+    outline: 0;
+    background: none;
+    caret-color:white;
+    }
+
+  .search_icon{
+  height: 40px;
+  width: 40px;
+  float: right;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  color:white;
+  text-decoration:none;
+  }

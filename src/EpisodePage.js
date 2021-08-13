@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import DtModal from './components/DtModal';
+import PropTypes from 'prop-types';
 
-function EpisodePage () {
+function EpisodePage (props) {
   const [episode, setEpisode] = useState([]);
   const [loading, setLoading] = useState(true);
   const [pageIndex, setPageIndex] = useState(1);
@@ -13,11 +14,6 @@ function EpisodePage () {
 
   function toggleModal () {
     setIsOpen(!isOpen);
-    if (!isOpen) {
-      someFunc();
-    } else {
-      setCharacterList([]);
-    }
   }
 
   useEffect(() => {
@@ -29,7 +25,9 @@ function EpisodePage () {
     const page1 = await fetchEpisodeByIndex(pageIndex);
     setPageIndex(pageIndex + 1);
     setEpisode([...episode, ...page1]);
-    setLoading(false);
+    setLoading(false);git add .
+    git commit -m'add netlify folder'
+    git push
   };
 
   async function fetchEpisodeByIndex (pageIndex) {
@@ -51,13 +49,13 @@ function EpisodePage () {
     setLoading(false);
   };
 
-  const someFunc = async () => {
+  useEffect(async () => {
     const responses = [];
-    episode[index].characters.map(async data => {
+    episode[index - 1]?.characters.map(async data => {
       responses.push(await axios.get(data));
       setCharacterList([...characterList, ...responses]);
     });
-  };
+  }, [index]);
 
   return (
     <div>
@@ -99,22 +97,21 @@ function EpisodePage () {
           </tr>
         </thead>
         <tbody>
-          { episode.map(data => {
+          { episode.filter(tempEpisode => tempEpisode.name.toLowerCase().includes(props.search)).map(data => {
             return (
-              <tr
-                key={ data.id }
+              <tr key = { data.id }
                 className={ data.id % 2 === 0 ? '' : 'table-active' }
               >
-                <th scope="row">{ data.id }</th>
+                <th key = { data.id } scope="row">{ data.id }</th>
                 <td>{ data.name }</td>
                 <td>{ data.air_date }</td>
                 <td>{ data.episode }</td>
                 <td>
                   <button
-                    className="btn"
+                    className="btn btn-danger"
                     onClick={ () => {
-                      toggleModal();
                       setIndex(data.id);
+                      toggleModal();
                     } }
                   >
                     Show
@@ -135,5 +132,9 @@ function EpisodePage () {
     </div>
   );
 }
+
+EpisodePage.propTypes = {
+  search: PropTypes.string
+};
 
 export default EpisodePage;

@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 function Navbar () {
@@ -23,11 +22,4 @@ function Navbar () {
   );
 }
 
-// gönderilen propların veri tipini belirleyebiliriz veya gerekli olup olmadığını ayarlayabiliriz
-Navbar.propTypes = {
-  title: PropTypes.string.isRequired
-};
-Navbar.defaultProps = {
-  title: 'Default App'
-};
 export default Navbar;

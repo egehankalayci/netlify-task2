@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import PropTypes from 'prop-types';
 
-function LocationPage () {
+function LocationPage (props) {
   const [location, setLocation] = useState([]);
   const [loading, setLoading] = useState(true);
   const [pageIndex, setPageIndex] = useState(1);
@@ -48,7 +49,7 @@ function LocationPage () {
             <th scope="col">Dimension</th>
           </tr>
         </thead>
-        { location.map(data => {
+        { location.filter(tempLocation => tempLocation.name.toLowerCase().includes(props.search)).map(data => {
           return (
             <tbody key={ data.id }>
               <tr className={ data.id % 2 === 0 ? '' : 'table-active' }>
@@ -71,5 +72,9 @@ function LocationPage () {
     </div>
   );
 }
+
+LocationPage.propTypes = {
+  search: PropTypes.string
+};
 
 export default LocationPage;
