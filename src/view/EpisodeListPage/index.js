@@ -1,9 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
-import DtModal from './components/DtModal';
+import DtModal from '../../components/DtModal';
 import PropTypes from 'prop-types';
+import { SearchContext } from '../../context/SearchContext';
+import EKButton from '../../components/EKButton';
 
-function EpisodePage (props) {
+import './episode-list-page.scss';
+import '../../components/DtModal/dtmodal.scss';
+
+function EpisodePage () {
   const [episode, setEpisode] = useState([]);
   const [loading, setLoading] = useState(true);
   const [pageIndex, setPageIndex] = useState(1);
@@ -25,9 +30,7 @@ function EpisodePage (props) {
     const page1 = await fetchEpisodeByIndex(pageIndex);
     setPageIndex(pageIndex + 1);
     setEpisode([...episode, ...page1]);
-    setLoading(false);git add .
-    git commit -m'add netlify folder'
-    git push
+    setLoading(false);
   };
 
   async function fetchEpisodeByIndex (pageIndex) {
@@ -58,36 +61,39 @@ function EpisodePage (props) {
   }, [index]);
 
   return (
-    <div>
+    <>
       <DtModal
         isOpen={ isOpen }
         onRequestClose={ toggleModal }
         contentLabel="Characters in this episode"
-        title="Deneme"
       >
-        <h1>Characters in This Episode</h1>
-        <div className="row">
-          { characterList.map(data => {
-            return (
-              <div key={ data.id } className="col-md-4">
-                <img
-                  src={ data.data.image }
-                  alt={ data.data.name }
-                  width="100"
-                  height="100"
-                />
-                <h4>{ data.data.name }</h4>
-              </div>
-            );
-          }) }
+        <div className="dtmodal">
+          <div className="dtmodal__title">
+            <p>Characters in This Episode</p>
+          </div>
+          <div className="dtmodal__items">
+            { characterList.map(data => {
+              return (
+                <div key={ data.id } className="dtmodal__items__card">
+                  <img
+                    src={ data.data.image }
+                    alt={ data.data.name }
+                    width="100"
+                    height="100"
+                  />
+                  <h4>{ data.data.name }</h4>
+                </div>
+              );
+            }) }
+          </div>
+          <EKButton size="s" color="red" onClick={ toggleModal }>
+          Close
+          </EKButton>
         </div>
-        <button className="btn btn-danger" onClick={ toggleModal }>
-            Close
-        </button>
-        <h1 style={ { color: 'black' } }>{ }</h1>
       </DtModal>
-      <table className="table table-bordered table-dark">
-        <thead className="thead-light">
+     
+      <table>
+        <thead>
           <tr>
             <th scope="col">#</th>
             <th scope="col">Name</th>
@@ -97,39 +103,36 @@ function EpisodePage (props) {
           </tr>
         </thead>
         <tbody>
-          { episode.filter(tempEpisode => tempEpisode.name.toLowerCase().includes(props.search)).map(data => {
+          { episode.filter(tempEpisode => tempEpisode.name.toLowerCase().includes(useContext(SearchContext))).map(data => {
             return (
-              <tr key = { data.id }
-                className={ data.id % 2 === 0 ? '' : 'table-active' }
-              >
-                <th key = { data.id } scope="row">{ data.id }</th>
+              <tr key = { data.id }>
+                <th>{ data.id }</th>
                 <td>{ data.name }</td>
                 <td>{ data.air_date }</td>
                 <td>{ data.episode }</td>
                 <td>
-                  <button
-                    className="btn btn-danger"
-                    onClick={ () => {
-                      setIndex(data.id);
-                      toggleModal();
-                    } }
-                  >
-                    Show
-                  </button>
+                  <EKButton size="s" color="red" onClick={ () => {
+                    setIndex(data.id);
+                    toggleModal();
+                  } }>
+                      Show
+                  </EKButton>
                 </td>
               </tr>
             );
           }) }
         </tbody>
       </table>
+      &nbsp;
       { loading ? (
         'loading'
       ) : (
-        <button className="btn btn-danger" onClick={ onLoadMoreButtonClick }>
+        <EKButton size="l" color="green" onClick= { onLoadMoreButtonClick }>
           Load More
-        </button>
+        </EKButton>
       ) }
-    </div>
+      &nbsp;
+    </>
   );
 }
 

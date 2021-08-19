@@ -1,0 +1,39 @@
+.header {
+  display: flex;
+  flex-flow: column wrap;
+  width: 100%;
+}
+.header__title {
+  font-family: "Courier New", Courier, monospace;
+  color: #00b460;
+  font-size: 55px;
+  font-weight: bold;
+}
+.header__navbar {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-end;
+  padding: 10px;
+  background: black;
+  box-shadow: 0px 0px 10px var(--clr-gray200);
+  margin: 0;
+  padding: 1rem 0;
+  border-radius: var(--radius);
+  align-items: center;
+}
+.header__navbar--item {
+  list-style: none;
+  margin-right: 2rem;
+  border-style: solid;
+}
+.header__navbar--item a {
+  text-decoration: none;
+  color: white;
+}
+
+.page {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  grid-gap: 30px;
+  padding: 50px;
+}

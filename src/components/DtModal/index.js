@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import './dtmodal.scss';
 
 const DtModal = props => {
-  const { isOpen, onRequestClose, contentLabel, children, title } = props;
+  const { isOpen, onRequestClose, contentLabel, children } = props;
 
   useEffect(() => {
     Modal.setAppElement('#root');
@@ -18,8 +18,6 @@ const DtModal = props => {
       contentLabel={ contentLabel }
     >
       <div>
-        <h1 className="dtmodal__title">{ title }</h1>
-        <h2 className="dtmodal__description">{ title }</h2>
         { children }
       </div>
     </Modal>

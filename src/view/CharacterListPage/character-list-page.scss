@@ -1,0 +1,11 @@
+.datalist{
+    &__page{
+            margin-bottom: 2vw;
+            &__cards{
+                display: grid;
+                grid-template-columns: 300px 300px 300px;
+                grid-gap: 30px;
+                padding: 50px;
+            }
+    }
+}

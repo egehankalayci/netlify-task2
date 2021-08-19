@@ -1,9 +1,28 @@
 .dtmodal {
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+    align-content: initial;
+    height: 50%;
     &__title{
-        color: #870000
+        font-family: 'Courier New', Courier, monospace;
+        color: #00b460;
+        font-size: 55px;
+        font-weight: bold;
     }
-
-    &__description{
-        color: #20fa0c
+    &__items{
+        display: grid;
+        grid-template-columns: auto auto auto auto auto;
+        grid-gap: 10px;
+        padding-bottom: 20px;
+        &__card{
+            display: flex;
+            flex-flow: column wrap;
+            align-items: center;
+            padding: 10px;
+            border-style: solid;
+            border-color: gray;
+            border-radius: 20px;
+        }
     }
 }

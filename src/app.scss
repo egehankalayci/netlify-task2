@@ -1,0 +1,12 @@
+.header{
+    display: flex;
+    flex-flow: column wrap;
+    width: 100%;
+    &__title{
+        font-family: 'Courier New', Courier, monospace;
+        color: #00b460;
+        font-size: 55px;
+        font-weight: bold;
+    }
+}
+

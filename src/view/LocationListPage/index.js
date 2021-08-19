@@ -1,8 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
+import { SearchContext } from '../../context/SearchContext';
+import EKButton from '../../components/EKButton';
 
-function LocationPage (props) {
+import './location-list-page.scss';
+
+
+function LocationPage () {
   const [location, setLocation] = useState([]);
   const [loading, setLoading] = useState(true);
   const [pageIndex, setPageIndex] = useState(1);
@@ -39,9 +44,9 @@ function LocationPage (props) {
   };
 
   return (
-    <div>
-      <table className="table table-bordered table-dark">
-        <thead className="thead-light" >
+    <>
+      <table>
+        <thead>
           <tr>
             <th scope="col">#</th>
             <th scope="col">Name</th>
@@ -49,10 +54,10 @@ function LocationPage (props) {
             <th scope="col">Dimension</th>
           </tr>
         </thead>
-        { location.filter(tempLocation => tempLocation.name.toLowerCase().includes(props.search)).map(data => {
+        { location.filter(tempLocation => tempLocation.name.toLowerCase().includes(useContext(SearchContext))).map(data => {
           return (
             <tbody key={ data.id }>
-              <tr className={ data.id % 2 === 0 ? '' : 'table-active' }>
+              <tr>
                 <th scope="row">{ data.id }</th>
                 <td>{ data.name }</td>
                 <td>{ data.type }</td>
@@ -61,15 +66,17 @@ function LocationPage (props) {
             </tbody>
           );
         }) }
-        { loading ? (
-          'loading'
-        ) : (
-          <button className="btn btn-danger" onClick={ onLoadMoreButtonClick }>
-            Load More
-          </button>
-        ) }
       </table>
-    </div>
+      &nbsp;
+      { loading ? (
+        'loading'
+      ) : (
+        <EKButton size="l" color="green" onClick= { onLoadMoreButtonClick }>
+          Load More
+        </EKButton>
+      ) }
+      &nbsp;
+    </>
   );
 }
 
