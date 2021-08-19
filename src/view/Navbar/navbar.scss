@@ -2,25 +2,23 @@
     display: flex;
     flex-flow: row wrap;
     justify-content: flex-end;
-    background: #1f2229;
-    box-shadow: 0px 0px 10px var(--clr-gray200);
+    background: #edf2ef44;
     margin: 0;
     padding: 1rem 0;
-    border-radius: var(--radius);
     align-items: center;
 
     &__item{
         list-style: none;
         margin-right: 2rem;
         border-radius: 15px;
-        background-color: cadetblue;
+        background-color: #2288a7;
         padding: 10px;
         a{
             text-decoration: none;
             color: white;
         }
         &:hover{
-            background-color: #3e8e41;
+            background-color: #D1D646;
             color: white;
         }
     }

@@ -2,7 +2,7 @@
     display: flex;
     flex-flow: column wrap;
     width: 100%;
-    background-color: rgba(204, 204, 204, 0.103);
+    background-color: #57c4e53d;
     border-radius: 25px;
     height: fit-content;
 
@@ -64,7 +64,7 @@
         &__info{
             &__lastKnownLocation{
                 &__title{
-                    color: red;
+                    color: #F97068;
                     font-size: 25px;
                     font-family: 'Courier New', Courier, monospace;
                     font-weight: bold;
@@ -79,7 +79,7 @@
 
             &__firstSeemIn{
                 &__title{
-                    color: red;
+                    color: #F97068;
                     font-size: 25px;
                     font-family: 'Courier New', Courier, monospace;
                     font-weight: bold;
@@ -96,7 +96,7 @@
 
     &__footer{
         &__button{
-            background-color: green;
+            background-color: #57C4E5;
             padding: 10px 25px;
             text-align: center;
             text-decoration: none;
@@ -107,7 +107,7 @@
             margin-bottom: 20px;
             border-radius: 20px;
             &:hover {
-                background-color: #4CAF50;
+                background-color: #D1D646;
                 color: white;
               }
         }

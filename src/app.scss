@@ -1,12 +1,26 @@
-.header{
-    display: flex;
-    flex-flow: column wrap;
-    width: 100%;
+.App{
+    text-align: center;
+    &__header{
+        background-color: #212738;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        font-size: calc(10px + 2vmin);
+        color: white;
+    }
     &__title{
         font-family: 'Courier New', Courier, monospace;
-        color: #00b460;
+        color: #EDF2EF;
         font-size: 55px;
         font-weight: bold;
     }
+}
+
+.navbar{
+    display: flex;
+    flex-flow: row wrap;
+    width: 100%; 
 }
 

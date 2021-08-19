@@ -86,7 +86,7 @@ function EpisodePage () {
               );
             }) }
           </div>
-          <EKButton size="s" color="red" onClick={ toggleModal }>
+          <EKButton size="s" color="#F97068" onClick={ toggleModal }>
           Close
           </EKButton>
         </div>
@@ -111,7 +111,7 @@ function EpisodePage () {
                 <td>{ data.air_date }</td>
                 <td>{ data.episode }</td>
                 <td>
-                  <EKButton size="s" color="red" onClick={ () => {
+                  <EKButton size="s" color="#F97068" onClick={ () => {
                     setIndex(data.id);
                     toggleModal();
                   } }>

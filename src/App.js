@@ -9,7 +9,6 @@ import EpisodeListPage from './view/EpisodeListPage/index.js';
 import LocationListPage from './view/LocationListPage/index.js';
 import NotFoundPage from './view/NotFoundPage/index.js';
 
-import './App.css';
 import './app.scss';
 
 function App () {
@@ -29,10 +28,9 @@ function App () {
     <SearchContext.Provider value={ search }>
       <Router>
         <div className="App">
-          <header className="App-header">
-            <div className="header">
-              <Navbar/>
-            </div>
+          <header className="App__header">
+            <p className="App__title">The Rick and Morty API</p>
+            <Navbar/>
           &nbsp;
             <SearchInput search={ inputWord } onSearchChange={ handleChange } onPressSubmit={ onPressSubmit }/>
           &nbsp;

@@ -80,7 +80,7 @@ function DataList () {
                       pathname: `detail/${data.id}`,
                     } }
                   >
-                    <EKButton size="m" color="red">
+                    <EKButton size="m" color="#D1D646">
                         Detail
                     </EKButton>
                   </Link>

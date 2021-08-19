@@ -1,4 +1,4 @@
-table{
+.table{
     border-collapse: collapse;
     background: white;
     border-radius: 10px;
@@ -6,11 +6,11 @@ table{
     width: 65%;
     margin: 0 auto;
     position: relative;
-    thead{
-        tr{
+    &__thead{
+        &__tr{
             height: 60px;
-            background: #2288a7;
-            th{
+            background: #36304a;
+            &__th{
                 font-family: 'Courier New', Courier, monospace;
                 font-size: 25px;
                 font-weight: bold;
@@ -19,8 +19,8 @@ table{
             }
         }
     }
-    tbody{
-        tr{
+    &__tbody{
+        &__tr{
             height: 50px;
             color: black;
             font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
@@ -32,7 +32,7 @@ table{
                 background-color: #e0e0e0;
                 cursor: pointer;
               }
-              td{
+              &__td{
                 text-align: center; 
                 vertical-align: middle;
 
